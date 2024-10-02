@@ -1,4 +1,4 @@
-import { Button, Image, Rate } from "antd";
+import { Button, Image, Rate, Spin } from "antd";
 import { Card, CardContent } from "../../components/ui/card";
 import {
   Carousel,
@@ -8,14 +8,15 @@ import {
   CarouselPrevious,
 } from "../../components/ui/carousel";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { TProducts } from "../../utils/type";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/featues/CartSlice";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
-const FruitsPlant = () => {
+const PlantsPots = () => {
   const types = {
     name: "",
     price: "",
@@ -31,11 +32,20 @@ const FruitsPlant = () => {
   }, []);
 
   const fetchRecords = () => {
-    axios.get("http://localhost:5000/api/v1/product").then((res) => {
-      setProduct(res.data.data);
-      console.log(res.data.data);
-      console.log(res.data.products);
-    });
+    const loadingToastId = toast.loading("Data is Loading...");
+
+    axios
+      .get("http://localhost:5000/api/v1/product")
+      .then((res) => {
+        setProduct(res.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        toast.error("Error fetching data");
+      })
+      .finally(() => {
+        toast.dismiss(loadingToastId);
+      });
   };
 
   //  map over plants
@@ -58,9 +68,6 @@ const FruitsPlant = () => {
 
   const handleAddtoCart = (plant: any) => {
     dispatch(addToCart(plant));
-    // setTimeout(() => {
-    // navigate("/cart");
-    // }, 1000);
   };
 
   return (
@@ -147,4 +154,4 @@ const FruitsPlant = () => {
   );
 };
 
-export default FruitsPlant;
+export default PlantsPots;

@@ -28,9 +28,7 @@ const Detail = () => {
     );
   }
 
-  // const { data: movie } = data.movie;
   const { data: plants } = data;
-  // console.log(plants.name);
 
   return (
     <div>

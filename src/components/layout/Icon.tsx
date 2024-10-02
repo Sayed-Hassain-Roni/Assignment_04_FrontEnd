@@ -14,7 +14,7 @@ export const CartIcon: React.FC = () => (
     style={{
       fontSize: "42px",
       marginLeft: "30px",
-      color: "green",
+      color: "black",
       marginTop: "-8px",
     }}
   >

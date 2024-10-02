@@ -38,7 +38,7 @@ const Products = () => {
                   lineHeight: "70px",
                 }}
               >
-                A garden is a friend you can visit anytime.
+                We Provide All Kind Of Plants..
               </h1>
               <div style={{ marginTop: "30px" }}>
                 <Button type="primary" size={"large"}>
@@ -70,7 +70,7 @@ const Products = () => {
                   lineHeight: "60px",
                 }}
               >
-                Gardening is the art of taking a tiny seed and growing magic.
+                Are you looking for a flowers for your garden?
               </h1>
               <div style={{ marginTop: "30px" }}>
                 <Button type="primary" size={"large"}>
@@ -103,7 +103,7 @@ const Products = () => {
                   lineHeight: "70px",
                 }}
               >
-                Gardening adds years to your life and life to your years.
+                Start your Garding from today, We are here to help you.
               </h1>
               <div style={{ marginTop: "30px" }}>
                 <Button type="primary" size={"large"}>

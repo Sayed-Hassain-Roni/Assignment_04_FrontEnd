@@ -1,4 +1,4 @@
-import { Button, Image, Rate } from "antd";
+import { Button, Image, Rate, Spin } from "antd";
 import { Card, CardContent } from "../../components/ui/card";
 import {
   Carousel,
@@ -8,14 +8,14 @@ import {
   CarouselPrevious,
 } from "../../components/ui/carousel";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { TProducts } from "../../utils/type";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/featues/CartSlice";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const FruitsPlant = () => {
+const Fertilizer = () => {
   const types = {
     name: "",
     price: "",
@@ -58,9 +58,6 @@ const FruitsPlant = () => {
 
   const handleAddtoCart = (plant: any) => {
     dispatch(addToCart(plant));
-    // setTimeout(() => {
-    // navigate("/cart");
-    // }, 1000);
   };
 
   return (
@@ -147,4 +144,4 @@ const FruitsPlant = () => {
   );
 };
 
-export default FruitsPlant;
+export default Fertilizer;
