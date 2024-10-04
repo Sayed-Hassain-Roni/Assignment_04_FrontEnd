@@ -6,6 +6,7 @@ interface CartItem {
   name: string;
   price: number;
   cartQuantity: number;
+  stockQuantity: number;
 }
 
 interface CartState {
@@ -40,15 +41,23 @@ const cartSlice = createSlice({
           }
         );
       } else {
-        const tempProductItem: CartItem = {
-          ...action.payload,
-          cartQuantity: 1,
-        };
-        state.cartItems.push(tempProductItem);
-        toast.success(`${action.payload.name} added to cart`, {
-          position: "bottom-left",
-        });
+        // Check if stock quantity is available
+        if (action.payload.stockQuantity > 0) {
+          const tempProductItem: CartItem = {
+            ...action.payload,
+            cartQuantity: 1,
+          };
+          state.cartItems.push(tempProductItem);
+          toast.success(`${action.payload.name} added to cart`, {
+            position: "bottom-left",
+          });
+        } else {
+          toast.error(`Sorry, ${action.payload.name} is out of stock.`, {
+            position: "bottom-left",
+          });
+        }
       }
+
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
@@ -62,7 +71,7 @@ const cartSlice = createSlice({
       if (itemIndex >= 0) {
         if (state.cartItems[itemIndex].cartQuantity > 1) {
           state.cartItems[itemIndex].cartQuantity -= 1;
-          toast.info("Decreased product quantity", {
+          toast.info(`Decreased ${action.payload.name} from cart quantity`, {
             position: "bottom-left",
           });
         } else {
@@ -70,7 +79,7 @@ const cartSlice = createSlice({
             (item) => item._id !== action.payload._id
           );
           state.cartItems = nextCartItems;
-          toast.error("Product removed from cart", {
+          toast.error(`${action.payload.name}removed from cart`, {
             position: "bottom-left",
           });
         }

@@ -1,8 +1,8 @@
 import { Badge, Col, Layout, Menu, MenuProps, Row } from "antd";
 import Container from "../ui/container";
 import { NavLink, Outlet } from "react-router-dom";
-
 import { CartIcon } from "./Icon";
+import { useSelector } from "react-redux";
 
 const items: MenuProps["items"] = [
   {
@@ -17,16 +17,25 @@ const items: MenuProps["items"] = [
     key: "management",
     label: <NavLink to="/management">Management</NavLink>,
   },
+  {
+    key: "about",
+    label: <NavLink to="/about">About Us</NavLink>,
+  },
 ];
 
 const CommonLayout = () => {
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
+
   return (
     <Layout>
-      <div className="sticky top-0 z-50" style={{ background: "#fffdfd" }}>
+      <div
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{ background: "#e2e8f0" }}
+      >
         <Container>
-          <Row>
-            <Col span={9}>
-              <div style={{ display: "flex", marginTop: "-20px" }}>
+          <Row gutter={[16, 16]} align="middle">
+            <Col xs={24} lg={8} sm={8} md={9}>
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <img
                   style={{ width: "100px", height: "120px" }}
                   src="/img/logo3.png"
@@ -38,9 +47,7 @@ const CommonLayout = () => {
                       fontSize: "18px",
                       fontWeight: "bolder",
                       color: "#006400",
-                      marginTop: "65px",
                       fontFamily: "Garamond",
-                      marginLeft: "-30px",
                     }}
                   >
                     UDBHOSHITO UDYAN
@@ -48,7 +55,7 @@ const CommonLayout = () => {
                 </NavLink>
               </div>
             </Col>
-            <Col span={9}>
+            <Col xs={7} lg={10} sm={16} md={9}>
               <header>
                 <Menu
                   theme="light"
@@ -57,21 +64,19 @@ const CommonLayout = () => {
                   style={{
                     flex: 1,
                     minWidth: 0,
-                    background: "#fffdfd",
+                    background: "#e2e8f0",
                     fontWeight: "Bold",
                     fontSize: "16px",
-                    font: "blue",
                     border: "none",
-                    marginTop: "35px",
                     fontFamily: "monospace",
                   }}
                 />
               </header>
             </Col>
-            <Col span={6}>
-              <div style={{ display: "flex", marginTop: "38px" }}>
+            <Col xs={15} lg={6} sm={6} md={6}>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
                 <NavLink to="/cart">
-                  <Badge count={5}>
+                  <Badge count={cartTotalQuantity}>
                     <CartIcon />
                   </Badge>
                 </NavLink>

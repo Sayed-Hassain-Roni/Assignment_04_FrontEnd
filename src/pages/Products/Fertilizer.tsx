@@ -48,7 +48,7 @@ const Fertilizer = () => {
   console.log(mappedPlants);
   // filter by category
   const filteredPlants = mappedPlants.filter(
-    (plant: any) => plant.category === "Flowers"
+    (plant: any) => plant.category === "Flowering Plants"
   );
   console.log(filteredPlants.length);
 
@@ -62,7 +62,7 @@ const Fertilizer = () => {
 
   return (
     <div className="mt-5 mb-8">
-      <h1 className="text-green-700 text-3xl ">Fruits Plants</h1>
+      <h1 className="text-green-700 text-3xl ">Flowering Plants</h1>
       <div className="my-8">
         <div className="">
           <Carousel className="w-full ">
@@ -86,7 +86,7 @@ const Fertilizer = () => {
                             Name:{" "}
                             <span className="text-base text-blue-900">
                               {" "}
-                              {plant.name}
+                              {plant.name?.slice(0, 10)}
                             </span>
                           </h1>
 

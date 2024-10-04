@@ -1,3 +1,4 @@
+import MasonryGallery from "../../components/layout/ShowCaseImg";
 import Container from "../../components/ui/container";
 import Footer from "../Footer/Footer";
 import Fertilizer from "./Fertilizer";
@@ -15,6 +16,7 @@ const LandingPage = () => {
           <FruitsPlant />
           <PlantsPosts />
           <Fertilizer />
+          <MasonryGallery />
         </div>
       </Container>
       <Footer />

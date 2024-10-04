@@ -58,7 +58,7 @@ const PlantsPots = () => {
   console.log(mappedPlants);
   // filter by category
   const filteredPlants = mappedPlants.filter(
-    (plant: any) => plant.category === "Flowers"
+    (plant: any) => plant.category === "Gardening tools and Pots"
   );
   console.log(filteredPlants.length);
 
@@ -72,7 +72,7 @@ const PlantsPots = () => {
 
   return (
     <div className="mt-5 mb-8">
-      <h1 className="text-green-700 text-3xl ">Fruits Plants</h1>
+      <h1 className="text-green-700 text-3xl ">Gardening Items</h1>
       <div className="my-8">
         <div className="">
           <Carousel className="w-full ">
@@ -96,7 +96,7 @@ const PlantsPots = () => {
                             Name:{" "}
                             <span className="text-base text-blue-900">
                               {" "}
-                              {plant.name}
+                              {plant.name?.slice(0, 10)}
                             </span>
                           </h1>
 

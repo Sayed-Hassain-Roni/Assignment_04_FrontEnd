@@ -71,7 +71,7 @@ const CreateNewProduct: React.FC = () => {
           <h1 className="text-center pt-10 font-bold text-fuchsia-900 font-serif text-3xl">
             Add Your New Product
           </h1>
-          <Link className="flex justify-end mr-16 " to={"/management"}>
+          <Link className=" ml-16 " to={"/management"}>
             {" "}
             <Button className="bg-green-500 w-24 h-10 font-bold text-white">
               Back
@@ -102,27 +102,15 @@ const CreateNewProduct: React.FC = () => {
                 rules={[{ required: true }]}
               >
                 <Select placeholder="Select a category">
-                  <Select.Option value="Flowers">Flowers</Select.Option>
-                  <Select.Option value="Trees">Trees</Select.Option>
+                  <Select.Option value="Flowers">
+                    Flowering Plants
+                  </Select.Option>
+                  <Select.Option value="Trees">Fruits Plants</Select.Option>
                   <Select.Option value="Shrubs and Bushes">
-                    Shrubs and Bushes
+                    Indoor Plants
                   </Select.Option>
-                  <Select.Option value="Vegetables">Vegetables</Select.Option>
-                  <Select.Option value="Herbs">Herbs</Select.Option>
-                  <Select.Option value="Seeds and Bulbs">
-                    Seeds and Bulbs
-                  </Select.Option>
-                  <Select.Option value="Gardening Tools">
-                    Gardening Tools
-                  </Select.Option>
-                  <Select.Option value="Soils and Fertilizers">
-                    Soils and Fertilizers
-                  </Select.Option>
-                  <Select.Option value="Garden Decor">
-                    Garden Decor
-                  </Select.Option>
-                  <Select.Option value="Pest and Disease Control">
-                    Pest and Disease Control
+                  <Select.Option value="Vegetables">
+                    Gardening tools and Pots
                   </Select.Option>
                 </Select>
               </Form.Item>

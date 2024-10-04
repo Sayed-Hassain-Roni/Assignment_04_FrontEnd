@@ -4,9 +4,10 @@ import CartLayout from "../components/layout/CartLayout";
 import Detail from "../pages/details/Detail";
 import Management from "../pages/Management/Management";
 import CreateNewProduct from "../pages/Management/Table/CreateNewProduct";
-import UpdataProduct from "../pages/Management/Table/UpdataProduct";
 import AllProducts from "../pages/All Product/AllProducts";
 import NotFound from "../pages/NotFound";
+import UpdateProduct from "../pages/Management/Table/UpdataProduct";
+import AboutUs from "../pages/AboutUs";
 
 export const route = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const route = createBrowserRouter([
   {
     path: "/home",
     element: <App />,
+  },
+  {
+    path: "/about",
+    element: <AboutUs />,
   },
   {
     path: "/cart",
@@ -42,8 +47,9 @@ export const route = createBrowserRouter([
   },
   {
     path: "/management/edit/:id",
-    element: <UpdataProduct />,
+    element: <UpdateProduct />,
   },
+
   {
     path: "/createproduct",
     element: <CreateNewProduct />,

@@ -10,7 +10,7 @@ const Products = () => {
   };
 
   return (
-    <div>
+    <div className="mt-28">
       <div>
         <Carousel arrows infinite={true} autoplay>
           <div>

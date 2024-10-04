@@ -10,10 +10,10 @@ const Management = () => {
   return (
     <div>
       <CommonLayout />
-      <div className="border-2">
+      <div className="border-2 mt-24">
         <Container>
           <div className="pt-8  ">
-            <h1 className="text-center mb-10 text-3xl font-serif text-green-600 font-bold">
+            <h1 className="text-center mb-4 text-3xl font-serif text-green-600 font-bold">
               Manage your product
             </h1>
           </div>

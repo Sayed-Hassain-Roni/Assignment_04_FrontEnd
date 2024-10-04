@@ -1,85 +1,94 @@
-import { Col, Image, Rate, Row, Space, Spin } from "antd";
+import { Col, Image, Row } from "antd";
 import CommonLayout from "../../components/layout/CommonLayout";
 import Container from "../../components/ui/container";
 import { Button } from "../../components/ui/button";
-import { IntegerStep } from "./Quantity";
-import { useParams } from "react-router-dom";
-import { useGetSinglePlantsQuery } from "../../redux/api/baseApi";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, getTotals } from "../../redux/featues/CartSlice";
+import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import axios from "axios";
+import Footer from "../Footer/Footer";
 
 const Detail = () => {
-  //this is for loading spiner..
-  const contentStyle: React.CSSProperties = {
-    padding: 50,
-    background: "rgba(0, 0, 0, 0.05)",
-    borderRadius: 4,
+  const types = {
+    name: "",
+    price: "",
+    category: "",
+    description: "",
+    stockQuantity: "",
+    imageUrl: "",
+    _id: "",
   };
-  const content = <div style={contentStyle} />;
-  //this is for loading spiner.End.
 
-  const { id: _id } = useParams();
-  // console.log(slug);
-  const { data, isLoading } = useGetSinglePlantsQuery(_id as string);
+  const { id } = useParams();
+  const [plants, setProduct] = useState(types);
 
-  if (isLoading) {
-    return (
-      <Spin tip="Loading" size="large">
-        {content}
-      </Spin>
-    );
-  }
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/product/${id}`)
+      .then((response) => {
+        setProduct(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
 
-  const { data: plants } = data;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleAddtoCart = (plants) => {
+    dispatch(addToCart(plants));
+    setTimeout(() => {
+      navigate("/cart");
+    }, 1000);
+  };
+
+  const cart = useSelector((state) => state.cart);
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
   return (
     <div>
       <CommonLayout />
-
-      <Container>
-        <div className="pt-10 border-t-2 ">
-          <Row className="flex  mx-auto w-3/4">
-            <Col span={16}>
-              <div>
-                <img
-                  style={{ width: "470px", height: "380px" }}
-                  src={plants.imageUrl}
-                  alt=""
-                />
-              </div>
+      <ToastContainer />
+      <div className="pb-10 pt-36 bg-gray-100">
+        <Container>
+          <Row className="mx-auto gap-10  w-full flex flex-col md:flex-row">
+            <Col md={11} xs={24} className="flex justify-center">
+              <Image
+                style={{ maxWidth: "100%", height: "auto" }}
+                src={plants.imageUrl}
+                alt={plants.name}
+              />
             </Col>
-            <Col span={8}>
-              {" "}
-              <div>
+            <Col md={11} xs={24} className="mt-4  md:mt-0">
+              <div className="mx-auto xs:ml-10 lg:mt-10 ">
                 <h1 className="text-2xl text-green-800 font-serif font-bold border-b-2 inline-block pb-2 border-black">
                   {plants.name}
                 </h1>
+                <p className="mt-4 text-green-800 text-base font-semibold">
+                  Category: <span className="text-sm">{plants.category}</span>
+                </p>
                 <h4 className="text-lg text-green-800 font-serif font-semibold mt-3">
-                  $ {plants.price}
+                  Price: ${plants.price}
                 </h4>
-                <Rate
-                  className="text-sm text-yellow-600"
-                  disabled
-                  defaultValue={3}
-                />
                 <p className="mt-3 text-base text-green-700 font-semibold font-serif">
                   {plants.description}
                 </p>
-                <Space
-                  style={{ width: "100%", marginTop: "8px" }}
-                  direction="vertical"
+                <Button
+                  onClick={() => handleAddtoCart(plants)}
+                  className="bg-purple-500 w-full font-serif font-semibold text-base mt-10"
                 >
-                  <span className="text-lg text-green-800 font-serif font-semibold">
-                    Quantity:
-                    <IntegerStep />
-                  </span>
-                </Space>
-                <Button className="bg-purple-500 w-full font-serif font-semibold text-base mx-auto mt-5">
                   ADD TO CART
                 </Button>
               </div>
             </Col>
           </Row>
-        </div>
-      </Container>
+        </Container>
+      </div>
+      <Footer />
     </div>
   );
 };

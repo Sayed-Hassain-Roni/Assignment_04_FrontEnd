@@ -8,10 +8,10 @@ import {
   CarouselPrevious,
 } from "../../components/ui/carousel";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { TProducts } from "../../utils/type";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/featues/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, getTotals } from "../../redux/featues/CartSlice";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -48,19 +48,21 @@ const FruitsPlant = () => {
   console.log(mappedPlants);
   // filter by category
   const filteredPlants = mappedPlants.filter(
-    (plant: any) => plant.category === "Flowers"
+    (plant: any) => plant.category === "Fruits Plants"
   );
   console.log(filteredPlants.length);
 
-  // Add To Cart Function..
-
+  //This is for show cart qunatity number
+  const cart = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
+  // Add To Cart Function..
   const handleAddtoCart = (plant: any) => {
     dispatch(addToCart(plant));
-    // setTimeout(() => {
-    // navigate("/cart");
-    // }, 1000);
+    console.log(handleAddtoCart);
   };
 
   return (
@@ -89,7 +91,7 @@ const FruitsPlant = () => {
                             Name:{" "}
                             <span className="text-base text-blue-900">
                               {" "}
-                              {plant.name}
+                              {plant.name?.slice(0, 10)}
                             </span>
                           </h1>
 

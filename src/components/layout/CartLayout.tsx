@@ -6,14 +6,35 @@ import Footer from "../../pages/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { removeFromCart } from "../../redux/featues/CartSlice";
+import {
+  addToCart,
+  clearCart,
+  decreaseCart,
+  getTotals,
+  removeFromCart,
+} from "../../redux/featues/CartSlice";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 
 const CartLayout = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
+
   const handleRemoveCart = (cartItem: any) => {
     dispatch(removeFromCart(cartItem));
+  };
+  const handleDecreseCart = (cartItem: any) => {
+    dispatch(decreaseCart(cartItem));
+  };
+  const handleIncreseCart = (cartItem: any) => {
+    dispatch(addToCart(cartItem));
+  };
+  const handleClearCart = () => {
+    dispatch(clearCart());
   };
 
   return (
@@ -21,7 +42,7 @@ const CartLayout = () => {
       <CommonLayout />
       <ToastContainer />
       <Container>
-        <div>
+        <div className="mt-36">
           <h1 className="text-center text-red-600 my-10 font-semibold text-3xl">
             Shopping Cart
           </h1>
@@ -84,11 +105,15 @@ const CartLayout = () => {
                       </p>
                     </div>
                     <div className="col-span-2 ml-10 mx-auto my-auto text-center mt-8 border-2 border-gray-400 h-10 flex px-4 font-semibold ">
-                      <button>-</button>
+                      <button onClick={() => handleDecreseCart(cartItem)}>
+                        -
+                      </button>
                       <div className=" my-auto px-5">
                         {cartItem.cartQuantity}
                       </div>
-                      <button>+</button>
+                      <button onClick={() => handleIncreseCart(cartItem)}>
+                        +
+                      </button>
                     </div>
                     <div className="col-span-2 font-semibold mt-9 flex justify-end mr-9">
                       ${cartItem.price * cartItem.cartQuantity}
@@ -98,7 +123,10 @@ const CartLayout = () => {
               </div>
 
               <div className="flex justify-between mr-10 mb-16">
-                <button className="border-2 border-gray-400 rounded-sm text-center p-2 h-12 my-auto w-28 text-gray-900 font-semibold">
+                <button
+                  onClick={() => handleClearCart()}
+                  className="border-2 border-gray-400 rounded-sm text-center p-2 h-12 my-auto w-28 text-gray-900 font-semibold"
+                >
                   Clear Cart
                 </button>
                 <div>
