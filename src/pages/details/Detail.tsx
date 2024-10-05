@@ -64,7 +64,7 @@ const Detail = () => {
               />
             </Col>
             <Col md={11} xs={24} className="mt-4  md:mt-0">
-              <div className="mx-auto xs:ml-10 lg:mt-10 ">
+              <div className="mx-auto xs:ml-10 lg:py-4 ">
                 <h1 className="text-2xl text-green-800 font-serif font-bold border-b-2 inline-block pb-2 border-black">
                   {plants.name}
                 </h1>

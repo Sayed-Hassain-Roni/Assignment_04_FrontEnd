@@ -47,6 +47,7 @@ const TableDemo = () => {
         setProduct((preProduct) =>
           preProduct.filter((product) => product._id !== id)
         );
+        window.confirm("Are you sure to delete this product?");
         message.success("Product Deleted");
       })
       .catch((error) => console.log(error));

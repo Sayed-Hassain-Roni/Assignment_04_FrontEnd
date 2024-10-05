@@ -4,7 +4,7 @@ import CommonLayout from "./CommonLayout";
 import Container from "../ui/container";
 import Footer from "../../pages/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import {
   addToCart,
@@ -15,10 +15,12 @@ import {
 } from "../../redux/featues/CartSlice";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
+import { CreditCard } from "lucide-react";
 
 const CartLayout = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getTotals());
@@ -134,10 +136,15 @@ const CartLayout = () => {
                     <h3>Subtotal</h3>
                     <p>${cart.cartTotalAmount}</p>
                   </div>
-
-                  <button className="my-4  bg-blue-700 w-64 h-10 rounded-sm text-white font-semibold">
-                    {" "}
-                    Check Out{" "}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/checkout");
+                    }}
+                    className="my-4 bg-blue-700 w-64 h-10 rounded-sm text-white font-bold px-10 flex gap-5 items-center"
+                  >
+                    <span>Proceed Checkout</span>
+                    <CreditCard className="inline" width={15} height={15} />
                   </button>
                   <Link to={"/"}>
                     {" "}

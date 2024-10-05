@@ -8,6 +8,7 @@ import AllProducts from "../pages/All Product/AllProducts";
 import NotFound from "../pages/NotFound";
 import UpdateProduct from "../pages/Management/Table/UpdataProduct";
 import AboutUs from "../pages/AboutUs";
+import CheckOutPage from "../components/layout/ChecKout";
 
 export const route = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const route = createBrowserRouter([
   {
     path: "/cart",
     element: <CartLayout />,
+  },
+  {
+    path: "/checkout",
+    element: <CheckOutPage />,
   },
 
   {
