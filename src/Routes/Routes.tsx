@@ -1,4 +1,4 @@
-import { Navigate, createBrowserRouter, redirect } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import CartLayout from "../components/layout/CartLayout";
 import Detail from "../pages/details/Detail";

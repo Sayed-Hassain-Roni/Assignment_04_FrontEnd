@@ -1,4 +1,4 @@
-import { Button, Image, Rate, Spin } from "antd";
+import { Button, Image, Rate } from "antd";
 import { Card, CardContent } from "../../components/ui/card";
 import {
   Carousel,
@@ -9,7 +9,6 @@ import {
 } from "../../components/ui/carousel";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Link, NavLink } from "react-router-dom";
-import { TProducts } from "../../utils/type";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/featues/CartSlice";
 import { useEffect, useState } from "react";
@@ -32,9 +31,7 @@ const Fertilizer = () => {
 
   const fetchRecords = () => {
     axios
-      .get(
-        "https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product"
-      )
+      .get("https://assignment04-backend.vercel.app/api/v1/product")
       .then((res) => {
         setProduct(res.data.data);
         console.log(res.data.data);
@@ -71,7 +68,7 @@ const Fertilizer = () => {
         <div className="">
           <Carousel className="w-full ">
             <CarouselContent className="-ml-1">
-              {filteredPlants.map((plant: TProducts) => (
+              {filteredPlants.map((plant: any) => (
                 <CarouselItem
                   key={plant?._id}
                   className="pl-1 md:basis-1/3 lg:basis-1/5"
@@ -113,7 +110,7 @@ const Fertilizer = () => {
                           </h1>
 
                           <div className="flex justify-between mt-8">
-                            <Link to={plant?._id}>
+                            <Link to={plant._id}>
                               <Button className="bg-green-600 font-extrabold w-20 h-10 text-white text-base">
                                 Details
                               </Button>

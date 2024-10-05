@@ -1,4 +1,4 @@
-import { Button, Image, Rate, Spin } from "antd";
+import { Button, Image, Rate } from "antd";
 import { Card, CardContent } from "../../components/ui/card";
 import {
   Carousel,
@@ -9,12 +9,11 @@ import {
 } from "../../components/ui/carousel";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Link, NavLink } from "react-router-dom";
-import { TProducts } from "../../utils/type";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/featues/CartSlice";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const PlantsPots = () => {
   const types = {
@@ -35,9 +34,7 @@ const PlantsPots = () => {
     const loadingToastId = toast.loading("Data is Loading...");
 
     axios
-      .get(
-        "https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product"
-      )
+      .get("https://assignment04-backend.vercel.app/api/v1/product")
       .then((res) => {
         setProduct(res.data.data);
       })
@@ -79,7 +76,7 @@ const PlantsPots = () => {
         <div className="">
           <Carousel className="w-full ">
             <CarouselContent className="-ml-1">
-              {filteredPlants.map((plant: TProducts) => (
+              {filteredPlants.map((plant: any) => (
                 <CarouselItem
                   key={plant?._id}
                   className="pl-1 md:basis-1/3 lg:basis-1/5"

@@ -33,7 +33,7 @@ const TableDemo = () => {
   const fetchRecords = (page: any) => {
     axios
       .get(
-        `https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product/show?page=${page}&size=12`
+        `https://assignment04-backend.vercel.app/api/v1/product/show?page=${page}&size=12`
       )
       .then((res) => {
         setProduct(res.data.products);
@@ -44,10 +44,8 @@ const TableDemo = () => {
   // Delete product function
   const deleteUser = async (id: string) => {
     await axios
-      .delete(
-        `https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product/${id}`
-      )
-      .then((response) => {
+      .delete(`https://assignment04-backend.vercel.app/api/v1/product/${id}`)
+      .then(() => {
         setProduct((preProduct) =>
           preProduct.filter((product) => product._id !== id)
         );

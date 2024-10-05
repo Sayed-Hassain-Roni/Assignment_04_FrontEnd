@@ -13,7 +13,7 @@ const CheckOutPage = () => {
     address: "Dhaka, Bangladesh",
   });
 
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state: any) => state.cart);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,14 +21,14 @@ const CheckOutPage = () => {
   }, [cart, dispatch]);
 
   // Handle input changes
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const data = {
       user,

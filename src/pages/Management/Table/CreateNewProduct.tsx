@@ -5,7 +5,6 @@ import Container from "../../../components/ui/container";
 import { useCreatePlantsMutation } from "../../../redux/api/baseApi";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 // Define the SubmitButtonProps interface
 interface SubmitButtonProps {

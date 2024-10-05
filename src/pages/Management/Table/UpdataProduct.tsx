@@ -31,9 +31,7 @@ const UpdateProduct: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product/${id}`
-      )
+      .get(`https://assignment04-backend.vercel.app/api/v1/product/${id}`)
       .then((response) => {
         setProduct(response.data.data);
       })
@@ -43,7 +41,9 @@ const UpdateProduct: React.FC = () => {
   }, [id]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setProduct((prev) => ({ ...prev, [name]: value }));
@@ -53,7 +53,7 @@ const UpdateProduct: React.FC = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product/${id}`,
+        `https://assignment04-backend.vercel.app/api/v1/product/${id}`,
         product
       );
       message.success("Product Updated Successfully!");

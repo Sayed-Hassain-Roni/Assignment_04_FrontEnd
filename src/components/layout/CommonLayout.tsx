@@ -24,33 +24,29 @@ const items: MenuProps["items"] = [
 ];
 
 const CommonLayout = () => {
-  const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const { cartTotalQuantity } = useSelector((state: any) => state.cart);
 
   return (
     <Layout>
       <div
-        className="fixed top-0 left-0 right-0 z-50"
+        className="fixed py-4 top-0 left-0 right-0 z-50"
         style={{ background: "#e2e8f0" }}
       >
         <Container>
           <Row gutter={[16, 16]} align="middle">
             <Col xs={24} lg={8} sm={8} md={9}>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img
-                  style={{ width: "100px", height: "120px" }}
-                  src="/img/logo3.png"
-                  alt=""
-                />
                 <NavLink to="/home">
                   <h1
                     style={{
-                      fontSize: "18px",
+                      fontSize: "20px",
                       fontWeight: "bolder",
-                      color: "#006400",
-                      fontFamily: "Garamond",
+                      color: "green",
+                      fontFamily: "serif",
                     }}
                   >
-                    UDBHOSHITO UDYAN
+                    <span className="text-3xl  text-red-600">U</span>
+                    DBHOSHITO UDYAN
                   </h1>
                 </NavLink>
               </div>

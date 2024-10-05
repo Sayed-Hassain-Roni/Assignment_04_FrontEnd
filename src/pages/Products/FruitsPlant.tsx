@@ -9,7 +9,6 @@ import {
 } from "../../components/ui/carousel";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Link, NavLink } from "react-router-dom";
-import { TProducts } from "../../utils/type";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getTotals } from "../../redux/featues/CartSlice";
 import { useEffect, useState } from "react";
@@ -32,9 +31,7 @@ const FruitsPlant = () => {
 
   const fetchRecords = () => {
     axios
-      .get(
-        "https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product"
-      )
+      .get("https://assignment04-backend.vercel.app/api/v1/product")
       .then((res) => {
         setProduct(res.data.data);
         console.log(res.data.data);
@@ -76,7 +73,7 @@ const FruitsPlant = () => {
         <div className="">
           <Carousel className="w-full ">
             <CarouselContent className="-ml-1">
-              {filteredPlants.map((plant: TProducts) => (
+              {filteredPlants.map((plant: any) => (
                 <CarouselItem
                   key={plant?._id}
                   className="pl-1 md:basis-1/3 lg:basis-1/5"
