@@ -31,11 +31,15 @@ const Fertilizer = () => {
   }, []);
 
   const fetchRecords = () => {
-    axios.get("http://localhost:5000/api/v1/product").then((res) => {
-      setProduct(res.data.data);
-      console.log(res.data.data);
-      console.log(res.data.products);
-    });
+    axios
+      .get(
+        "https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product"
+      )
+      .then((res) => {
+        setProduct(res.data.data);
+        console.log(res.data.data);
+        console.log(res.data.products);
+      });
   };
 
   //  map over plants

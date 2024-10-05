@@ -23,7 +23,7 @@ export const productsFetch = createAsyncThunk<Product[], void>(
   async () => {
     try {
       const response = await axios.get<Product[]>(
-        "http://localhost:5000/api/v1/product"
+        "https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product"
       );
       return response.data;
     } catch (error) {

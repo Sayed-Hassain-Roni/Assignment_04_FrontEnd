@@ -3,7 +3,10 @@ import { TProducts } from "../../utils/type";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl:
+      "https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1",
+  }),
   endpoints: (builder) => ({
     // getPlants: builder.query({
     //   query: () => ({

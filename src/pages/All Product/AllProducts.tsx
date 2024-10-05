@@ -31,7 +31,9 @@ const AllProducts = () => {
 
   const fetchRecords = (page: any) => {
     axios
-      .get(`http://localhost:5000/api/v1/product/show?page=${page}&size=12`)
+      .get(
+        `https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product/show?page=${page}&size=12`
+      )
       .then((res) => {
         setProduct(res.data.products);
         setTotalPages(res.data.totalCount);

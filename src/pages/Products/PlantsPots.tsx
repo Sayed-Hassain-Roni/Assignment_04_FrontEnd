@@ -35,7 +35,9 @@ const PlantsPots = () => {
     const loadingToastId = toast.loading("Data is Loading...");
 
     axios
-      .get("http://localhost:5000/api/v1/product")
+      .get(
+        "https://assignment04-backend-reo9q2mt6-sayed-hassain-ronis-projects.vercel.app/api/v1/product"
+      )
       .then((res) => {
         setProduct(res.data.data);
       })
